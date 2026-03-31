@@ -22,7 +22,7 @@ df = load_data()
 
 
 # ---------- ПОСТРОЕНИЕ ДВУХ КОЛОНОК ----------
-col_left, col_right = st.columns([3, 2])
+col_left, col_right = st.columns([5, 2])
 
 # ---------- ЛЕВАЯ КОЛОНКА: КАРТА ----------
 with col_left:
