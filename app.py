@@ -35,7 +35,13 @@ with col_left:
         value=min_year,
         step=1
     )
-
+    map_height = st.slider(
+        "Размер карты:",
+        min_value=1,
+        max_value=20,
+        value=5,
+        step=1
+    )
     filtered_df = df[df["year"] <= selected_year]
 
     if filtered_df.empty:
@@ -81,7 +87,7 @@ with col_left:
                 "style": {"backgroundColor": "steelblue", "color": "white"}
             }
         ),
-        height=900   # можно подобрать под свой монитор
+        height=map_height*100   # можно подобрать под свой монитор
     )
 
 
