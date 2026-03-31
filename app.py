@@ -29,12 +29,13 @@ with col_left:
     min_year = int(df["year"].min())
     max_year = int(df["year"].max())
     selected_year = st.slider(
-        "Выберите год:",
+        "Выберите диапазон лет:",
         min_value=min_year,
         max_value=max_year,
-        value=min_year,
+        value=(min_year, max_year),  # по умолчанию весь период
         step=1
     )
+    start_year, end_year = selected_year
     map_height = st.slider(
         "Размер карты:",
         min_value=1,
@@ -42,7 +43,7 @@ with col_left:
         value=5,
         step=1
     )
-    filtered_df = df[df["year"] <= selected_year]
+    filtered_df = df[(df["year"] >= start_year) & (df["year"] <= end_year)]
 
     if filtered_df.empty:
         st.warning("Нет событий для выбранного года.")
@@ -67,8 +68,8 @@ with col_left:
         get_color=[255, 255, 255],
         get_angle=0,
         get_text_anchor="middle",
-        get_alignment_baseline="bottom",
-        get_pixel_offset=[0, 20],
+        get_alignment_baseline="top",
+        get_pixel_offset=[0, 30],
         font_family="Arial",
         font_weight="bold",
     )
@@ -83,7 +84,7 @@ with col_left:
             layers=[scatter_layer, text_layer],
             initial_view_state=view_state,
             tooltip={
-                "html": "<b>{title}</b><br/>{year} г.<br/>{description}",
+                "html": "<b>{title}</b><br/>{year} г.",
                 "style": {"backgroundColor": "steelblue", "color": "white"}
             }
         ),
@@ -93,17 +94,18 @@ with col_left:
 
 # ---------- ПРАВАЯ КОЛОНКА: ТАЙМЛАЙН ----------
 with col_right:
-    st.subheader(f"События до {selected_year} года")
+    st.subheader(f"События с {start_year} по {end_year} год")
     for _, row in filtered_df.sort_values("year").iterrows():
         with st.expander(f"{row['year']} — {row['title']}"):
             st.write(f"**Описание:** {row['description']}")
             if "science_fact" in row and pd.notna(row['science_fact']):
-                st.info(f"🔬 **Научный факт:** {row['science_fact']}")
+                st.info(f"**Интересный факт:** {row['science_fact']}")
             if "photo_filename" in row and pd.notna(row['photo_filename']):
                 try:
                     from PIL import Image
                     img = Image.open(f"assets/photos/{row['photo_filename']}")
                     st.image(img, caption=row['title'], width=300)
                 except:
-                    st.caption("Фото временно недоступно")
+                    pass
+                    #st.caption("Фото временно недоступно")
             st.caption(f"Источник: {row.get('source', '—')}")
