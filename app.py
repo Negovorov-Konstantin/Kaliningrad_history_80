@@ -29,7 +29,7 @@ with col_left:
     min_year = int(df["year"].min())
     max_year = int(df["year"].max())
     selected_year = st.slider(
-        "Выберите диапазон лет:",
+        "Выберите диапазон:",
         min_value=min_year,
         max_value=max_year,
         value=(min_year, max_year),  # по умолчанию весь период
