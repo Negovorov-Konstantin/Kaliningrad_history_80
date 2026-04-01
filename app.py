@@ -18,13 +18,10 @@ def load_data():
 
 df = load_data()
 
-# ---------- ФИЛЬТРАЦИЯ ПО ГОДУ ----------
-
-
 # ---------- ПОСТРОЕНИЕ ДВУХ КОЛОНОК ----------
 col_left, col_right = st.columns([5, 2])
 
-# ---------- ЛЕВАЯ КОЛОНКА: КАРТА ----------
+# ---------- ЛЕВАЯ КОЛОНКА: КАРТА, СЛАЙДЕРЫ ----------
 with col_left:
     min_year = int(df["year"].min())
     max_year = int(df["year"].max())
@@ -32,7 +29,7 @@ with col_left:
         "Выберите диапазон:",
         min_value=min_year,
         max_value=max_year,
-        value=(min_year, max_year),  # по умолчанию весь период
+        value=(min_year, max_year),
         step=1
     )
     start_year, end_year = selected_year
@@ -88,7 +85,7 @@ with col_left:
                 "style": {"backgroundColor": "steelblue", "color": "white"}
             }
         ),
-        height=map_height*100   # можно подобрать под свой монитор
+        height=map_height*100
     )
 
 
