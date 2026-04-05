@@ -1,0 +1,22 @@
+This project includes software developed by:
+
+Streamlit (https://streamlit.io)
+Copyright 2018-2022 Streamlit Inc.
+Licensed under the Apache License, Version 2.0.
+
+Pandas (https://pandas.pydata.org)
+Copyright (c) 2008-2011, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team
+All rights reserved.
+Licensed under the BSD 3-Clause License.
+
+Pydeck (https://deckgl.readthedocs.io/en/latest/pydeck.html)
+Copyright (c) 2018 Uber Technologies, Inc.
+Licensed under the MIT License.
+
+Pillow (https://python-pillow.org)
+Copyright (c) 2010-2023 by Jeffrey A. Clark (Alex) and contributors.
+Licensed under the HPND License (MIT-like PIL Software License).
+
+streamlit-js-eval (https://github.com/aghasemi/streamlit_js_eval)
+Copyright (c) 2022 Aghasemi
+Licensed under the MIT License.
